@@ -1,5 +1,5 @@
 //
-// Created by user on 6/9/2022.
+// Created by Layan & Omar on 6/9/2022.
 //
 #include "Fighter.h"
 int Fighter::getAttackStrength() const
