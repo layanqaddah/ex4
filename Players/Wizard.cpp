@@ -1,5 +1,5 @@
 //
-// Created by user on 6/9/2022.
+// Created by layan & omar on 6/9/2022.
 //
 #include "Wizard.h"
 void Wizard::changeHp(int hpQuantity)
