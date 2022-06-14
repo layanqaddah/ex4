@@ -10,3 +10,8 @@ Player* Fighter::clone()
 {
     return new Fighter(*this);
 }
+
+void Fighter::print(std::ostream& os) const
+{
+    printPlayerDetails(os,m_name,"Fighter",m_level,m_force,m_healthPoints,m_coins);
+}

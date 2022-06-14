@@ -13,3 +13,9 @@ Player* Rogue::clone()
 {
     return new Rogue(*this);
 }
+
+
+void Rogue::print(std::ostream& os) const
+{
+    printPlayerDetails(os,m_name,"Rogue",m_level,m_force,m_healthPoints,m_coins);
+}

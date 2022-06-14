@@ -8,6 +8,14 @@ Player* Player::clone()
     return new Player(*this);
 }
 */
+
+std::ostream& operator<<(std::ostream& os, const Player& player)
+{
+    player.print(os);
+    return os;
+}
+
+
 void Player::levelUp()
 {
     m_level += (m_level == FINAL_LEVEL) ? 0 : 1;
@@ -17,28 +25,26 @@ int Player::getLevel()const
 {
     return m_level;
 }
-void Player::buff(int force)
+void Player::changeForce(int forceQuantity)
 {
-    if(force<0)
+    m_force+=forceQuantity;
+    if(m_force<0)
     {
-        return;
+        m_force=0;
     }
-    m_force+=force;
 }
-
-void Player::damage(int hpDamage)
+ void Player::changeHp(int hpQuantity)
 {
-    if(hpDamage<=0)
-    {
-        return;
-    }
-    m_healthPoints-=hpDamage;
+    m_healthPoints+=hpQuantity;
     if(m_healthPoints<0)
     {
         m_healthPoints=0;
     }
+    if (m_healthPoints>MAX_HP)
+    {
+        m_healthPoints= MAX_HP;
+    }
 }
-
 bool Player::isKnockedOut()const
 {
     if (m_healthPoints==0)
@@ -48,11 +54,19 @@ bool Player::isKnockedOut()const
     return false;
 }
 
+void Player::killThePlayer()
+{
+    m_healthPoints=0;
+}
+std::string Player::getPlayerName()
+{
+    return m_name;
+}
 bool Player::pay(int payment)
 {
     if(payment<=0)
     {
-        return true ;
+        return true;
     }
     if (m_coins>=payment)
     {
@@ -71,19 +85,6 @@ void Player::addCoins(int coins)
     m_coins+=coins;
 }
 
-
-void Player::heal(int hpBoost)
-{
-    if (hpBoost<=0)
-    {
-        return;
-    }
-    m_healthPoints+=hpBoost;
-    if (m_healthPoints>MAX_HP)
-    {
-        m_healthPoints= MAX_HP;
-    }
-}
 
 int Player::getAttackStrength() const
 {

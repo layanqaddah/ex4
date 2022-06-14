@@ -11,8 +11,6 @@
 class  Player
 {
 public:
-
-
     Player(std::string name):m_level(INITIAL_LEVEL),m_force(INITIAL_FORCE),
     m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS) , m_name(name){};
 
@@ -21,20 +19,23 @@ public:
 
     Player(const Player& otherPlayer)=default;
     Player& operator=(const Player& otherPlayer)=default;
-    friend std::ostream& operator<<(std::ostream& os,Player& player);
+    friend std::ostream& operator<<(std::ostream& os,const Player& player);
 
     virtual ~Player()=default;
     virtual Player* clone()=0;
 
     void levelUp();
     int getLevel() const;
-    void buff(int force);
-    void damage(int hpDamage);
+    virtual void changeHp(int hpQuantity);
+    void changeForce(int forceQuantity);
     bool isKnockedOut() const;
+    //------------------------------------------------------------------------------------------------------
+    std::string getPlayerName();
+    void killThePlayer();
     bool pay(int payment);
-    virtual void heal(int hpBoost);
     virtual void addCoins(int coins);
     virtual int getAttackStrength() const;
+
 
 protected:
     int m_level ;
@@ -42,6 +43,8 @@ protected:
     int m_healthPoints;
     int m_coins;
     static const int MAX_HP=100;
+    std::string m_name;
+    virtual void print(std::ostream& os) const = 0;
 
 private:
     static const int INITIAL_LEVEL=1;
@@ -49,11 +52,6 @@ private:
     static const int INITIAL_COINS=10;
     static const int FINAL_LEVEL=10;
 
-     std::string m_name;
 };
-
-std::ostream& operator<<(std::ostream& os,Player& player)
-{
-}
 
 #endif //EX4_PLAYER_H

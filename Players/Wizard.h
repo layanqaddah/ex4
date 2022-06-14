@@ -5,6 +5,7 @@
 #ifndef EX4_WIZARD_H
 #define EX4_WIZARD_H
 #include "Player.h"
+#include "../utilities.h"
 
 class Wizard : public Player
 {
@@ -14,7 +15,11 @@ public:
     Wizard& operator=(const Wizard& otherWizard)=default;
     ~Wizard()=default;
     Player* clone() override;
-    void heal(int hpBoost) override;
+    void changeHp(int hpQuantity) override;
+
+protected:
+    void print(std::ostream& os) const override;
+
 private:
 };
 
