@@ -32,7 +32,7 @@ private:
     static const int m_forceBoostOption = 2;
     static const int m_dealBreakOption = 0;
     bool isValidBuyOption(int buyDecision) const;
-
+    void readInput(int* buyDecision) const;
 };
 
 
