@@ -1,92 +1,57 @@
- //
-// Created by layan on 6/9/2022.
 //
-#include "Player.h"
-/*
-Player* Player::clone()
-{
-    return new Player(*this);
-}
-*/
+// Created by user on 6/9/2022.
+//
 
-std::ostream& operator<<(std::ostream& os, const Player& player)
-{
-    player.print(os);
-    return os;
-}
+#ifndef EX4_PLAYER_H
+#define EX4_PLAYER_H
 
+#include <string>
+#include <iostream>
 
-void Player::levelUp()
+class  Player
 {
-    m_level += (m_level == FINAL_LEVEL) ? 0 : 1;
-}
+public:
+    Player(std::string name):m_level(INITIAL_LEVEL),m_force(INITIAL_FORCE),
+    m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS) , m_name(name){};
 
-int Player::getLevel()const
-{
-    return m_level;
-}
-void Player::changeForce(int forceQuantity)
-{
-    m_force+=forceQuantity;
-    if(m_force<0)
-    {
-        m_force=0;
-    }
-}
- void Player::changeHp(int hpQuantity)
-{
-    m_healthPoints+=hpQuantity;
-    if(m_healthPoints<0)
-    {
-        m_healthPoints=0;
-    }
-    if (m_healthPoints>MAX_HP)
-    {
-        m_healthPoints= MAX_HP;
-    }
-}
-bool Player::isKnockedOut()const
-{
-    if (m_healthPoints==0)
-    {
-        return  true;
-    }
-    return false;
-}
+    Player():m_level(INITIAL_LEVEL),m_force(INITIAL_FORCE),
+    m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS), m_name(nullptr){};
 
-void Player::killThePlayer()
-{
-    m_healthPoints=0;
-}
-std::string Player::getPlayerName()
-{
-    return m_name;
-}
-bool Player::pay(int payment)
-{
-    if(payment<=0)
-    {
-        return true;
-    }
-    if (m_coins>=payment)
-    {
-        m_coins-=payment;
-        return true;
-    }
-    return false;
-}
+    Player(const Player& otherPlayer)=default;
+    Player& operator=(const Player& otherPlayer)=default;
+    friend std::ostream& operator<<(std::ostream& os,const Player& player);
 
-void Player::addCoins(int coins)
-{
-    if (coins<=0)
-    {
-        return;
-    }
-    m_coins+=coins;
-}
+    virtual ~Player()=default;
+    virtual Player* clone()=0;
+
+    void levelUp();
+    int getLevel() const;
+    virtual void changeHp(int hpQuantity);
+    void changeForce(int forceQuantity);
+    bool isKnockedOut() const;
+    //------------------------------------------------------------------------------------------------------
+    std::string getPlayerName();
+    void killThePlayer();
+    bool pay(int payment);
+    virtual void addCoins(int coins);
+    virtual int getAttackStrength() const;
 
 
-int Player::getAttackStrength() const
-{
-    return m_level+m_force;
-}
+protected:
+    int m_level ;
+    int m_force;
+    int m_healthPoints;
+    int m_coins;
+    static const int MAX_HP=100;
+    std::string m_name;
+    virtual void print(std::ostream& os) const = 0;
+
+private:
+    static const int INITIAL_LEVEL=1;
+    static const int INITIAL_FORCE=5;
+    static const int INITIAL_COINS=10;
+    static const int FINAL_LEVEL=10;
+
+};
+
+#endif //EX4_PLAYER_H
