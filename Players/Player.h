@@ -1,5 +1,5 @@
 //
-// Created by user on 6/9/2022.
+// Created by Layan & Omar on 6/9/2022.
 //
 
 #ifndef EX4_PLAYER_H
@@ -26,8 +26,8 @@ public:
 
     void levelUp();
     int getLevel() const;
-    virtual void changeHp(int hpQuantity);
-    void changeForce(int forceQuantity);
+    virtual void setHp(int hpQuantity);
+    void setForce(int forceQuantity);
     bool isKnockedOut() const;
     //------------------------------------------------------------------------------------------------------
     int getCoins();
