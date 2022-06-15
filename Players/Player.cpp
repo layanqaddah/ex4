@@ -26,7 +26,7 @@ int Player::getCoins()
     return m_coins;
 }
 
-void Player::changeForce(int forceQuantity)
+void Player::setForce(int forceQuantity)
 {
     m_force+=forceQuantity;
     if(m_force<0)
@@ -34,7 +34,7 @@ void Player::changeForce(int forceQuantity)
         m_force=0;
     }
 }
-void Player::changeHp(int hpQuantity)
+void Player::setHp(int hpQuantity)
 {
     m_healthPoints+=hpQuantity;
     if(m_healthPoints<0)
