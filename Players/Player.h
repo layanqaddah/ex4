@@ -1,4 +1,4 @@
- //
+//
 // Created by user on 6/9/2022.
 //
 
@@ -12,10 +12,10 @@ class  Player
 {
 public:
     Player(std::string name):m_level(INITIAL_LEVEL),m_force(INITIAL_FORCE),
-    m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS) , m_name(name){};
+                             m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS) , m_name(name){};
 
     Player():m_level(INITIAL_LEVEL),m_force(INITIAL_FORCE),
-    m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS), m_name(nullptr){};
+             m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS), m_name(nullptr){};
 
     Player(const Player& otherPlayer)=default;
     Player& operator=(const Player& otherPlayer)=default;
@@ -30,6 +30,7 @@ public:
     void changeForce(int forceQuantity);
     bool isKnockedOut() const;
     //------------------------------------------------------------------------------------------------------
+    int getCoins();
     std::string getPlayerName();
     void killThePlayer();
     bool pay(int payment);
