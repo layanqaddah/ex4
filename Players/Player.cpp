@@ -1,13 +1,8 @@
- //
-// Created by layan on 6/9/2022.
 //
+// Created by layan & omar on 6/9/2022.
+//
+
 #include "Player.h"
-/*
-Player* Player::clone()
-{
-    return new Player(*this);
-}
-*/
 
 std::ostream& operator<<(std::ostream& os, const Player& player)
 {
@@ -25,6 +20,12 @@ int Player::getLevel()const
 {
     return m_level;
 }
+
+int Player::getCoins()
+{
+    return m_coins;
+}
+
 void Player::changeForce(int forceQuantity)
 {
     m_force+=forceQuantity;
@@ -33,7 +34,7 @@ void Player::changeForce(int forceQuantity)
         m_force=0;
     }
 }
- void Player::changeHp(int hpQuantity)
+void Player::changeHp(int hpQuantity)
 {
     m_healthPoints+=hpQuantity;
     if(m_healthPoints<0)
