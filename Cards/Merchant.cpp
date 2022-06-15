@@ -2,6 +2,7 @@
 // Created by Omar on 15/06/2022.
 //
 
+#include <limits>
 #include "Merchant.h"
 
 
@@ -20,15 +21,30 @@ bool Merchant::isValidBuyOption(int buyDecision) const
     return buyDecision==m_hpBoostOption || buyDecision==m_forceBoostOption || buyDecision==m_dealBreakOption;
 }
 
+void Merchant::readInput(int *buyDecision) const
+{
+    std::string input;
+    std::getline(std::cin,input);
+    try
+    {
+        *buyDecision = std::stoi(input);
+    }
+    catch(std::invalid_argument)
+    {
+        *buyDecision = -1;
+    }
+}
 
 void Merchant::applyCard(Player& player)
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getCoins());
     int buyDecision = -1;
     bool playerHasEnoughMoney=false;
-    while(scanf("%d",&buyDecision)!=1 || !isValidBuyOption(buyDecision))
+    readInput(&buyDecision);
+    while(!isValidBuyOption(buyDecision))
     {
         printInvalidInput();
+        readInput(&buyDecision);
     }
     switch (buyDecision)
     {
@@ -36,7 +52,7 @@ void Merchant::applyCard(Player& player)
             playerHasEnoughMoney = player.pay(m_hpBoostCost);
             if(playerHasEnoughMoney)
             {
-                player.changeHp(m_hpBoost);
+                player.setHp(m_hpBoost);
                 printMerchantSummary(std::cout, player.getPlayerName(), m_hpBoostOption, m_hpBoostCost);
             }
             else
@@ -48,7 +64,7 @@ void Merchant::applyCard(Player& player)
             playerHasEnoughMoney = player.pay(m_forceBoostCost);
             if(playerHasEnoughMoney)
             {
-                player.changeForce(m_forceBoost);
+                player.setForce(m_forceBoost);
                 printMerchantSummary(std::cout, player.getPlayerName(), m_forceBoostOption, m_forceBoostCost);
             }
             else
