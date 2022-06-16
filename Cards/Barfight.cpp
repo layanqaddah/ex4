@@ -1,19 +1,23 @@
 //
-// Created by Layan & Omar on 6/14/2022.
+// Created by user on 6/14/2022.
 //
 
 #include "Barfight.h"
 #include "../Players/Fighter.h"
 
+const std::string Barfight::BARFIGHT_NAME = "Barfight";
 
 Card* Barfight::clone()
+
+
 {
     return  new Barfight(*this);
 }
 
 void Barfight::print(std::ostream& os) const
 {
-    printCardDetails(os,"Barfight");
+    printCardDetails(os,BARFIGHT_NAME);
+    printEndOfCardDetails(os);
 }
 
 void Barfight::applyCard(Player& player)
@@ -23,7 +27,7 @@ void Barfight::applyCard(Player& player)
     if(fighterPtr==nullptr)
     {
         isFighter= false;
-        player.changeHp(m_hpDamage);
+        player.setHp(HP_DAMAGE);
     }
     printBarfightMessage(isFighter);
 }

@@ -1,10 +1,11 @@
 //
-// Created by layan on 6/14/2022.
+// Created by user on 6/14/2022.
 //
 
 #include "Treasure.h"
 
 #include "Card.h"
+const std::string Treasure::TREASURE_NAME= "Treasure";
 
 Card* Treasure::clone()
 {
@@ -13,12 +14,12 @@ Card* Treasure::clone()
 
 void Treasure::print(std::ostream& os) const
 {
-    printCardDetails(os,"Treasure");
+    printCardDetails(os,TREASURE_NAME);
     printEndOfCardDetails(os);
 }
 
 void Treasure::applyCard(Player& player)
 {
-    player.addCoins(m_loot);
+    player.addCoins(TREASURE_LOOT);
     printTreasureMessage();
 }

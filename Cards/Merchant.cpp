@@ -3,6 +3,7 @@
 //
 
 #include "Merchant.h"
+const std::string Merchant::MERCHANT_NAME = "Merchant";
 
 
 Card* Merchant::clone()
@@ -12,12 +13,13 @@ Card* Merchant::clone()
 
 void Merchant::print(std::ostream& os) const
 {
-    printCardDetails(os,"Merchant");
+    printCardDetails(os,MERCHANT_NAME);
+    printEndOfCardDetails(os);
 }
 
 bool Merchant::isValidBuyOption(int buyDecision) const
 {
-    return buyDecision==m_hpBoostOption || buyDecision==m_forceBoostOption || buyDecision==m_dealBreakOption;
+    return buyDecision == HP_BOOST_OPTION || buyDecision == FORCE_BOOST_OPTION || buyDecision == DEAL_BREAK_OPTION;
 }
 
 void Merchant::readInput(int *buyDecision) const
@@ -47,31 +49,31 @@ void Merchant::applyCard(Player& player)
     }
     switch (buyDecision)
     {
-        case m_hpBoostOption:
-            playerHasEnoughMoney = player.pay(m_hpBoostCost);
+        case HP_BOOST_OPTION:
+            playerHasEnoughMoney = player.pay(HP_BOOST_COST);
             if(playerHasEnoughMoney)
             {
-                player.setHp(m_hpBoost);
-                printMerchantSummary(std::cout, player.getPlayerName(), m_hpBoostOption, m_hpBoostCost);
+                player.setHp(HP_BOOST);
+                printMerchantSummary(std::cout, player.getPlayerName(), HP_BOOST_OPTION, HP_BOOST_COST);
             }
             else
             {
                 printMerchantInsufficientCoins(std::cout);
             }
             break;
-        case m_forceBoostOption:
-            playerHasEnoughMoney = player.pay(m_forceBoostCost);
+        case FORCE_BOOST_OPTION:
+            playerHasEnoughMoney = player.pay(FORCE_BOOST_COST);
             if(playerHasEnoughMoney)
             {
-                player.setForce(m_forceBoost);
-                printMerchantSummary(std::cout, player.getPlayerName(), m_forceBoostOption, m_forceBoostCost);
+                player.setForce(FORCE_BOOST);
+                printMerchantSummary(std::cout, player.getPlayerName(), FORCE_BOOST_OPTION, FORCE_BOOST_COST);
             }
             else
             {
                 printMerchantInsufficientCoins(std::cout);
             }
             break;
-        case m_dealBreakOption:
+        case DEAL_BREAK_OPTION:
             printMerchantSummary(std::cout, player.getPlayerName(), 0, 0);
             break;
         default:

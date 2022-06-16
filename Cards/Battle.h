@@ -1,5 +1,5 @@
 //
-// Created by Layan & Omar on 6/14/2022.
+// Created by user on 6/14/2022.
 //
 
 #ifndef EX4_BATTLE_H
@@ -12,10 +12,10 @@ class Battle : public Card
 public:
     Battle(int force,int loot):m_force(force),m_loot(loot){};
     Battle(const Battle& battle)=default;
-    Battle& operator=(const Battle& battle)=default;
+    Battle& operator=(const Battle& battle)=delete;
 
     virtual ~Battle()=default;
-    virtual Card* clone()=0 ;
+    virtual Card* clone()=0;
 
      void applyCard(Player& player)override;
 protected:

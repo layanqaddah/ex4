@@ -24,13 +24,14 @@ protected:
     void print(std::ostream& os) const override;
 
 private:
-    static const int m_hpBoost = 1;
-    static const int m_hpBoostCost = 5;
-    static const int m_forceBoost = 1;
-    static const int m_forceBoostCost = 10;
-    static const int m_hpBoostOption = 1;
-    static const int m_forceBoostOption = 2;
-    static const int m_dealBreakOption = 0;
+    static const std::string MERCHANT_NAME;
+    static const int HP_BOOST = 1;
+    static const int HP_BOOST_COST = 5;
+    static const int FORCE_BOOST = 1;
+    static const int FORCE_BOOST_COST = 10;
+    static const int HP_BOOST_OPTION = 1;
+    static const int FORCE_BOOST_OPTION = 2;
+    static const int DEAL_BREAK_OPTION = 0;
     bool isValidBuyOption(int buyDecision) const;
     void readInput(int* buyDecision) const;
 };

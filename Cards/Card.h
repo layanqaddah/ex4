@@ -1,5 +1,5 @@
 //
-// Created by Omar & Layan on 6/13/2022.
+// Created by user on 6/13/2022.
 //
 
 #ifndef EX4_CARD_H
@@ -14,7 +14,7 @@ class Card
 public:
     Card()=default;
     Card(const Card& otherCard)=default;
-    Card& operator=(const Card& otherCard)=default;
+    Card& operator=(const Card& otherCard)=delete;
     friend std::ostream& operator<<(std::ostream& os,const Card& card);
 
     virtual ~Card()=default;

@@ -1,8 +1,9 @@
 //
-// Created by Layan & Omar on 6/14/2022.
+// Created by layan&omar on 6/14/2022.
 //
 
 #include "Goblin.h"
+const std::string Goblin::GOBLIN_NAME = "Goblin";
 
 Card* Goblin::clone()
 {
@@ -10,18 +11,18 @@ Card* Goblin::clone()
 }
 void Goblin::print(std::ostream& os)const
 {
-    printCardDetails(os,"Goblin");
-    printMonsterDetails(os,m_force,-m_hpDamage,m_loot);
+    printCardDetails(os,GOBLIN_NAME);
+    printMonsterDetails(os,m_force,-HP_DAMAGE,m_loot);
     printEndOfCardDetails(os);
 }
 void Goblin::onWinBattle(Player& player)
 {
     player.addCoins(m_loot);
-    printWinBattle(player.getPlayerName(),"Goblin");
+    printWinBattle(player.getPlayerName(),GOBLIN_NAME);
     player.levelUp();
 }
 void Goblin::onLossBattle(Player& player)
 {
-    player.changeHp(m_hpDamage);
-    printLossBattle(player.getPlayerName(),"Goblin");
+    player.setHp(HP_DAMAGE);
+    printLossBattle(player.getPlayerName(),GOBLIN_NAME);
 }

@@ -3,6 +3,7 @@
 //
 
 #include "Vampire.h"
+const std::string Vampire::VAMPIRE_NAME = "Vampire";
 
 Card* Vampire::clone()
 {
@@ -10,18 +11,18 @@ Card* Vampire::clone()
 }
 void Vampire::print(std::ostream& os)const
 {
-    printCardDetails(os,"Vampire");
-    printMonsterDetails(os,m_force,-m_hpDamage,m_loot);
+    printCardDetails(os,VAMPIRE_NAME);
+    printMonsterDetails(os, m_force, -HP_DAMAGE, m_loot);
     printEndOfCardDetails(os);
 }
 void Vampire::onWinBattle(Player& player)
 {
     player.addCoins(m_loot);
-    printWinBattle(player.getPlayerName(),"Vampire");
+    printWinBattle(player.getPlayerName(),VAMPIRE_NAME);
     player.levelUp();
 }
 void Vampire::onLossBattle(Player& player)
 {
-    player.setHp(m_hpDamage);
-    printLossBattle(player.getPlayerName(),"Vampire");
+    player.setHp(HP_DAMAGE);
+    printLossBattle(player.getPlayerName(),VAMPIRE_NAME);
 }

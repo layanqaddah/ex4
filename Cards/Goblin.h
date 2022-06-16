@@ -1,5 +1,5 @@
 //
-// Created by Layan & Omar on 6/14/2022.
+// Created by user on 6/14/2022.
 //
 
 #ifndef EX4_GOBLIN_H
@@ -11,8 +11,8 @@ class Goblin: public Battle
 public:
 
     Goblin(): Battle(6,2){};
-    Goblin(const Goblin& otherWizard)=default;
-    Goblin& operator=(const Goblin& otherWizard)=default;
+    Goblin(const Goblin& otherGoblin)=default;
+    Goblin& operator=(const Goblin& otherGoblin)=default;
     ~Goblin()=default;
     Card* clone() override;
 
@@ -21,7 +21,10 @@ protected:
      void onWinBattle(Player& player) override;
      void onLossBattle(Player& player)override;
 private:
-   static const int m_hpDamage = -10;
+    static const int GOBLIN_FORCE = 6;
+    static const int GOBLIN_LOOT = 2;
+    static const int HP_DAMAGE = -10;
+    static const std::string GOBLIN_NAME;
 };
 
 

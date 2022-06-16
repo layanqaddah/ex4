@@ -9,7 +9,7 @@
 class Vampire : public Battle
 {
 public:
-    Vampire(): Battle(10,2){};
+    Vampire(): Battle(VAMPIRE_FORCE,VAMPIRE_LOOT){};
     Vampire(const Vampire& otherVampire)=default;
     Vampire& operator=(const Vampire& otherVampire)=default;
     ~Vampire()=default;
@@ -21,7 +21,10 @@ protected:
     void onLossBattle(Player& player)override;
 
 private:
-    static const int m_hpDamage = -10;
+    static const int VAMPIRE_FORCE = 10;
+    static const int VAMPIRE_LOOT = 2;
+    static const int HP_DAMAGE = -10;
+    static const std::string VAMPIRE_NAME;
 };
 
 

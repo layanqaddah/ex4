@@ -6,6 +6,8 @@
 #include "../Players/Rogue.h"
 
 
+const std::string Pitfall::PITFALL_NAME = "Pitfall";
+
 Card*  Pitfall::clone()
 {
     return  new Pitfall(*this);
@@ -13,7 +15,7 @@ Card*  Pitfall::clone()
 
 void Pitfall::print(std::ostream& os) const
 {
-    printCardDetails(os,"Pitfall");
+    printCardDetails(os,PITFALL_NAME);
     printEndOfCardDetails(os);
 }
 
@@ -24,7 +26,7 @@ void Pitfall::applyCard(Player& player)
     if(roguePtr==nullptr)
     {
         isRogue= false;
-        player.setHp(m_hpDamage);
+        player.setHp(HP_DAMAGE);
     }
     printPitfallMessage(isRogue);
 }

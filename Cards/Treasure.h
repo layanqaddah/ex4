@@ -23,8 +23,8 @@ protected:
     void print(std::ostream& os) const override;
 
 private:
-    static const int m_loot =
-            10;
+    static const int TREASURE_LOOT =10;
+    static const std::string TREASURE_NAME;
 };
 
 

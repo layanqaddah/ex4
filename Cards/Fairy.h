@@ -24,8 +24,8 @@ protected:
     void print(std::ostream& os) const override;
 
 private:
-    static const int m_hpBoost = 10;
+    static const std::string FAIRY_NAME;
+    static const int HP_BOOST = 10;
 };
-
 
 #endif //EX4_FAIRY_H

@@ -1,4 +1,4 @@
- //
+//
 // Created by user on 6/14/2022.
 //
 
@@ -12,9 +12,9 @@ class Dragon :public Battle{
 
 public:
 
-    Dragon(): Battle(25,1000){};
-    Dragon(const Dragon& otherWizard)=default;
-    Dragon& operator=(const Dragon& otherWizard)=default;
+    Dragon(): Battle(DRAGON_FORCE,DRAGON_LOOT){};
+    Dragon(const Dragon& otherDragon)=default;
+    Dragon& operator=(const Dragon& otherDragon)=default;
     ~Dragon()=default;
     Card* clone() override;
 
@@ -23,7 +23,9 @@ protected:
         void onWinBattle(Player& player) override;
         void onLossBattle(Player& player)override;
 private:
-
+    static const int DRAGON_FORCE = 25;
+    static const int DRAGON_LOOT = 1000;
+    static const std::string DRAGON_NAME;
 
 };
 

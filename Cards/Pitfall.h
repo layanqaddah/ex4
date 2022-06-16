@@ -23,7 +23,8 @@ protected:
     void print(std::ostream& os) const override;
 
 private:
-    static const int m_hpDamage = -10;
+    static const int HP_DAMAGE = -10;
+    static const std::string PITFALL_NAME;
 };
 
 
