@@ -2,9 +2,12 @@
 // Created by Layan & Omar on 6/9/2022.
 //
 #include "Fighter.h"
+
+const std::string Fighter::FIGHTER_CLASS_NAME="Fighter";
+
 int Fighter::getAttackStrength() const
 {
-    return m_level+2*m_force;
+    return m_level+FIGHTER_FORCE_MULTIPLIER*m_force;
 }
 Player* Fighter::clone()
 {
@@ -13,5 +16,5 @@ Player* Fighter::clone()
 
 void Fighter::print(std::ostream& os) const
 {
-    printPlayerDetails(os,m_name,"Fighter",m_level,m_force,m_healthPoints,m_coins);
+    printPlayerDetails(os,m_name,FIGHTER_CLASS_NAME,m_level,m_force,m_healthPoints,m_coins);
 }

@@ -15,12 +15,14 @@ public:
     Wizard& operator=(const Wizard& otherWizard)=default;
     ~Wizard()=default;
     Player* clone() override;
-    void changeHp(int hpQuantity) override;
+    void setHp(int hpQuantity) override;
 
 protected:
     void print(std::ostream& os) const override;
 
 private:
+    static const int WIZARD_HP_MULTIPLIER=2;
+    static const std::string WIZARD_CLASS_NAME;
 };
 
 #endif //EX4_WIZARD_H

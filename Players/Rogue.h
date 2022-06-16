@@ -21,6 +21,8 @@ public:
 protected:
     void print(std::ostream& os) const override;
 private:
+    static const int ROGUE_COINS_MULTIPLIER=2;
+    static const std::string ROGUE_CLASS_NAME;
 };
 
 #endif //EX4_ROGUE_H

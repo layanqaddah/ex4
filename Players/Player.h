@@ -18,7 +18,7 @@ public:
              m_healthPoints(MAX_HP) ,m_coins(INITIAL_COINS), m_name(nullptr){};
 
     Player(const Player& otherPlayer)=default;
-    Player& operator=(const Player& otherPlayer)=default;
+    Player& operator=(const Player& otherPlayer)=delete;
     friend std::ostream& operator<<(std::ostream& os,const Player& player);
 
     virtual ~Player()=default;
