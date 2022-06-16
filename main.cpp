@@ -1,36 +1,57 @@
 #include <iostream>
+#include <deque>
 #include "Players/Rogue.h"
 #include "Players/Wizard.h"
 #include "Players/Fighter.h"
 #include "Players/Player.h"
 #include "utilities.h"
 #include "Cards/Goblin.h"
-#include "Cards/Battle.h"
 #include "Cards/Barfight.h"
+#include "Cards/Vampire.h"
+#include "Cards/Merchant.h"
 
 using std::cout;
 using std::endl;
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    Wizard layan("Layan");
+
+void printCardsQueue(std::deque<Card*> cards)
+{
+    for(Card* cardPtr: cards)
+    {
+        cout<<*cardPtr;
+    }
+}
+
+void spinCardDeck(std::deque<Card*>& cards)
+{
+    Card* tmpPtr=cards.front();
+    cards.push_back(tmpPtr);
+    cards.pop_front();
+}
+
+
+int main()
+{
+    Fighter layan("layan20");
+    printLeaderBoardStartMessage();
     printPlayerLeaderBoard(1,layan);
 
-    Barfight barfight;
-    barfight.applyCard(layan);
+    Goblin greenGoblin;
+    Barfight boozedAndRash;
+    Vampire bloodThirsty;
+    Merchant jackOfAllTrades;
 
-    cout<<endl<<endl;
-    printPlayerLeaderBoard(1,layan);
+    std::deque<Card*> cardsList;
+    cardsList.push_front(&greenGoblin);
+    cardsList.push_front(&boozedAndRash);
+    cardsList.push_front(&bloodThirsty);
+    cardsList.push_front(&jackOfAllTrades);
 
-
-    /*
-    cout<<endl<<endl;
-    Goblin goblin;
-    goblin.applyCard(layan);
-    printPlayerLeaderBoard(1,layan);
-    cout<<goblin;
-     */
-
+    printCardsQueue(cardsList);
+    spinCardDeck(cardsList);
+    cout<<endl<<endl<<endl<<endl;
+    printCardsQueue(cardsList);
 
     return 0;
 }
+
