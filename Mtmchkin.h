@@ -129,7 +129,6 @@ private:
 };
 
 
-ifstream openCardsFile(const string filename);
 void readCardsFile(std::vector<string>& cardNames, ifstream& cardsFile);
 bool playerWon(const Player& player);
 
