@@ -205,7 +205,7 @@ void Mtmchkin::relocatePlayerInLeaderBoard()
 
 void Mtmchkin::popCurrentPlayerFromLeaderBoard()
 {
-    list<shared_ptr<const Player>>::const_iterator it = leaderBoard.begin();
+    list<shared_ptr<const Player>>::iterator it = leaderBoard.begin();
     for (int i = 0; i < victoriousPlayersCount; ++i)
     {
         ++it;
@@ -216,7 +216,7 @@ void Mtmchkin::popCurrentPlayerFromLeaderBoard()
 void Mtmchkin::pushCurrentPlayerInLeaderBoard()
 {
     shared_ptr<Player> tmpPtr = playersQueue.front();
-    list<shared_ptr<const Player>>::const_iterator it = leaderBoard.end();
+    list<shared_ptr<const Player>>::iterator it = leaderBoard.end();
     for (int i = 0; i < killedPlayersCounter; ++i)
     {
         --it;
