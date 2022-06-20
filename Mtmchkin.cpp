@@ -308,13 +308,11 @@ void Mtmchkin::invalidDetail(std::string playerName,std::string playerType)
     if(playerName.size()>MAX_PLAYER_NAME_SIZE || !containsOnlyEnglishLetters(playerName))
     {
         printInvalidName();
-        printExpectedPlayerNameFormat();
         return;
     }
     if(!isValidClass(playerType))
     {
         printInvalidClass();
-        printExpectedClassFormat();
     }
 }
 bool Mtmchkin::isValidClass(std::string playerType)
@@ -331,20 +329,6 @@ bool Mtmchkin::containsOnlyEnglishLetters(std::string const &str)
         }
     }
     return true;
-}
-
-void Mtmchkin::printExpectedClassFormat()
-{
-    std::cout<<"Available player types:"<<std::endl;
-    std::cout<<WIZARD_CLASS<<std::endl;
-    std::cout<<ROGUE_CLASS<<std::endl;
-    std::cout<<FIGHTER_CLASS<<std::endl;
-}
-
-void Mtmchkin::printExpectedPlayerNameFormat()
-{
-    std::cout<<"A player name should contain english letters only."<<std::endl;
-    std::cout<<"A player name should contain at most 15 letters."<<std::endl;
 }
 
 bool playerWon(const Player& player)

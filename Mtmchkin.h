@@ -101,8 +101,6 @@ private:
     bool containsOnlyEnglishLetters(string const &str);
     void invalidDetail(string playerName,string playerType);
     bool isValidClass(string playerType);
-    void printExpectedClassFormat();
-    void printExpectedPlayerNameFormat();
 
     deque<unique_ptr<Card>> cardsDeck;
     list<shared_ptr<const Player>> leaderBoard;
