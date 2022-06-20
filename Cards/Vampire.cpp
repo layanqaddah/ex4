@@ -23,6 +23,7 @@ void Vampire::onWinBattle(Player& player)
 }
 void Vampire::onLossBattle(Player& player)
 {
-    player.setHp(HP_DAMAGE);
+    player.setHp(Vampire::HP_DAMAGE);
+    player.setForce(Vampire::FORCE_DAMAGE);
     printLossBattle(player.getPlayerName(),VAMPIRE_NAME);
 }

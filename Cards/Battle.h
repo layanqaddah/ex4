@@ -17,7 +17,7 @@ public:
     virtual ~Battle()=default;
     virtual Card* clone()=0;
 
-     void applyCard(Player& player)override;
+     void applyCard(Player& player) override;
 protected:
     const int m_force;
     const int m_loot;

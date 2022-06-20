@@ -24,6 +24,7 @@ private:
     static const int VAMPIRE_FORCE = 10;
     static const int VAMPIRE_LOOT = 2;
     static const int HP_DAMAGE = -10;
+    static const int FORCE_DAMAGE = -1;
     static const std::string VAMPIRE_NAME;
 };
 
