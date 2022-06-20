@@ -26,7 +26,7 @@ const string Mtmchkin::TREASURE_CLASS = "Treasure";
 const string Mtmchkin::VAMPIRE_CLASS = "Vampire";
 
 
-Mtmchkin::Mtmchkin(const string fileName): roundsCount(1), killedPlayersCounter(0), victoriousPlayersCount(0)
+Mtmchkin::Mtmchkin(const string fileName): roundsCount(0), killedPlayersCounter(0), victoriousPlayersCount(0)
 {
     printStartGameMessage();
     initializeCardsDeck(fileName);
@@ -36,7 +36,7 @@ Mtmchkin::Mtmchkin(const string fileName): roundsCount(1), killedPlayersCounter(
 
 void Mtmchkin::playRound()
 {
-    printRoundStartMessage(roundsCount);
+    printRoundStartMessage(roundsCount+1);
     int initialTeamSize = playersQueue.size();
     for (int i = 0; i < initialTeamSize; ++i)
     {
@@ -101,21 +101,19 @@ void Mtmchkin::initializeCardsDeck(const string filename)
         cardsDeck.push_back(move(tmpPtr));
         ++lineCount;
     }
+    if(lineCount<6)
+    {
+        throw DeckFileInvalidSize();
+    }
 }
 
 
 void readCardsFile(vector<string> &cardNames, ifstream& cardsFile)
 {
     char buffer[30];
-    int count=0;
     while(cardsFile.getline(buffer,sizeof(buffer)))
     {
-        ++count;
         cardNames.push_back(buffer);
-    }
-    if(count<5)
-    {
-        throw DeckFileInvalidSize();
     }
 }
 
