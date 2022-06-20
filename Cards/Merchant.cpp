@@ -22,30 +22,16 @@ bool Merchant::isValidBuyOption(int buyDecision) const
     return buyDecision == HP_BOOST_OPTION || buyDecision == FORCE_BOOST_OPTION || buyDecision == DEAL_BREAK_OPTION;
 }
 
-void Merchant::readInput(int *buyDecision) const
-{
-    std::string input;
-    std::getline(std::cin,input);
-    try
-    {
-        *buyDecision = std::stoi(input);
-    }
-    catch(std::invalid_argument)
-    {
-        *buyDecision = -1;
-    }
-}
-
 void Merchant::applyCard(Player& player)
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getCoins());
     int buyDecision = -1;
     bool playerHasEnoughMoney=false;
-    readInput(&buyDecision);
+    std::cin>>buyDecision;
     while(!isValidBuyOption(buyDecision))
     {
         printInvalidInput();
-        readInput(&buyDecision);
+        std::cin>>buyDecision;
     }
     switch (buyDecision)
     {

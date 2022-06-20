@@ -78,8 +78,6 @@ int Mtmchkin::getNumberOfRounds() const
     return roundsCount;
 }
 
-
-
 ///################################## Cards Deck related ##################################
 void Mtmchkin::initializeCardsDeck(const string filename)
 {
