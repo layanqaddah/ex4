@@ -28,8 +28,8 @@ const string Mtmchkin::VAMPIRE_CLASS = "Vampire";
 
 Mtmchkin::Mtmchkin(const string fileName): roundsCount(0), killedPlayersCounter(0), victoriousPlayersCount(0)
 {
-    printStartGameMessage();
     initializeCardsDeck(fileName);
+    printStartGameMessage();
     createPlayersQueue();
     initializeLeaderBoard();
 }
