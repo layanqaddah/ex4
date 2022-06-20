@@ -110,7 +110,7 @@ void Mtmchkin::initializeCardsDeck(const string filename)
 
 void readCardsFile(vector<string> &cardNames, ifstream& cardsFile)
 {
-    char buffer[30];
+    char buffer[200];
     while(cardsFile.getline(buffer,sizeof(buffer)))
     {
         cardNames.push_back(buffer);
