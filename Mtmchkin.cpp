@@ -1,5 +1,5 @@
 //
-// Created by Omar on 16/06/2022.
+// Created by Omar & Layan on 16/06/2022.
 //
 
 #include "Mtmchkin.h"
@@ -32,7 +32,7 @@ Mtmchkin::Mtmchkin(const string fileName): roundsCount(1), killedPlayersCounter(
     initializeCardsDeck(fileName);
     createPlayersQueue();
     initializeLeaderBoard();
-};
+}
 
 void Mtmchkin::playRound()
 {
@@ -83,7 +83,11 @@ int Mtmchkin::getNumberOfRounds() const
 ///################################## Cards Deck related ##################################
 void Mtmchkin::initializeCardsDeck(const string filename)
 {
-    ifstream cardsFile = openCardsFile(filename);
+    ifstream cardsFile(filename);
+    if(!cardsFile)
+    {
+        throw DeckFileNotFound();
+    }
     vector<string> cardNames;
     readCardsFile(cardNames,cardsFile);
     int lineCount=1;
@@ -97,16 +101,6 @@ void Mtmchkin::initializeCardsDeck(const string filename)
         cardsDeck.push_back(move(tmpPtr));
         ++lineCount;
     }
-}
-
-ifstream openCardsFile(const string filename)
-{
-    ifstream cardsDeckFile(filename);
-    if(!cardsDeckFile)
-    {
-        throw DeckFileNotFound();
-    }
-    return cardsDeckFile;
 }
 
 
