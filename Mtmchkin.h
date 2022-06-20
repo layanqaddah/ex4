@@ -1,20 +1,42 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-#include "Players/Player.h"
-#include "Cards/Card.h"
+
+#include<vector>
+#include<fstream>
+#include<string>
 #include<deque>
-#include <memory>
+#include<list>
+#include<memory>
+/////////////////////////////////////////////////////////////////////
+#include "Cards/Card.h"
+#include "Cards/Vampire.h"
+#include "Cards/Goblin.h"
+#include "Cards/Treasure.h"
+#include "Cards/Pitfall.h"
+#include "Cards/Merchant.h"
+#include "Cards/Fairy.h"
+#include "Cards/Dragon.h"
+#include "Cards/Barfight.h"
 /////////////////////////////////////////////////////////////////////
 #include "Players/Rogue.h"
 #include "Players/Wizard.h"
 #include "Players/Fighter.h"
 #include <algorithm>
-////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 
+using std::deque;
+using std::string;
+using std::unique_ptr;
+using std::ifstream;
+using std::list;
+using std::shared_ptr;
 
-class Mtmchkin{
-
+class Mtmchkin
+{
 public:
+    ///############################### TO BE DELETED ###############################
+    void printCardsQueue();  ///to be deleted
+    ///#############################################################################
 
     /*
     * C'tor of Mtmchkin class
@@ -23,9 +45,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    Mtmchkin(const std::string fileName);
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
-    Mtmchkin();
+    Mtmchkin(const string fileName);
 
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -61,25 +81,56 @@ public:
     int getNumberOfRounds() const;
 
 private:
-    std::deque<std::shared_ptr<Player>> playersDeck;
-    void createPlayersDeck();
+    /// card related functions
+    void initializeCardsDeck(const string filename);
+    unique_ptr<Card> constructCard(const string cardName);
+    void spinCardDeck();
+    /// leader board related functions
+    void initializeLeaderBoard();
+    void updateLeaderBoard();
+    void relocatePlayerInLeaderBoard();
+    void popCurrentPlayerFromLeaderBoard();
+    void pushCurrentPlayerInLeaderBoard();
+    /// player related functions
+    void updatePlayersQueue();
+    void createPlayersQueue();
     int getTeamSize();
     bool isValidTeamSize(int teamSize);
     void getPlayers(int teamSize);
     void insertNewPlayer();
-    bool containsOnlyEnglishLetters(std::string const &str);
-    void invalidDetail(std::string playerName,std::string playerType);
-    bool isValidClass(std::string playerType);
+    bool containsOnlyEnglishLetters(string const &str);
+    void invalidDetail(string playerName,string playerType);
+    bool isValidClass(string playerType);
     void printExpectedClassFormat();
     void printExpectedPlayerNameFormat();
 
-    static const std::string ROGUE_CLASS ;
-    static const std::string WIZARD_CLASS ;
-    static const std::string FIGHTER_CLASS ;
+    deque<unique_ptr<Card>> cardsDeck;
+    list<shared_ptr<const Player>> leaderBoard;
+    deque<shared_ptr<Player>> playersQueue;
+    int roundsCount;
+    int killedPlayersCounter;
+    int victoriousPlayersCount;
+
+    static const string ROGUE_CLASS ;
+    static const string WIZARD_CLASS ;
+    static const string FIGHTER_CLASS ;
+    static const string BARFIGHT_CLASS;
+    static const string DRAGON_CLASS;
+    static const string FAIRY_CLASS;
+    static const string GOBLIN_CLASS;
+    static const string MERCHANT_CLASS;
+    static const string PITFALL_CLASS;
+    static const string TREASURE_CLASS;
+    static const string VAMPIRE_CLASS;
     static const int MAX_PLAYER_NAME_SIZE = 15;
     static const int MAX_PLAYERS_TEAM_SIZE = 6;
     static const int MIN_PLAYERS_TEAM_SIZE = 2;
+
 };
 
+
+ifstream openCardsFile(const string filename);
+void readCardsFile(std::vector<string>& cardNames, ifstream& cardsFile);
+bool playerWon(const Player& player);
 
 #endif /* MTMCHKIN_H_ */
