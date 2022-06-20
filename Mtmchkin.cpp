@@ -26,7 +26,7 @@ const string Mtmchkin::TREASURE_CLASS = "Treasure";
 const string Mtmchkin::VAMPIRE_CLASS = "Vampire";
 
 
-Mtmchkin::Mtmchkin(const string fileName): roundsCount(0), killedPlayersCounter(0), victoriousPlayersCount(0)
+Mtmchkin::Mtmchkin(const string& fileName): roundsCount(0), killedPlayersCounter(0), victoriousPlayersCount(0)
 {
     initializeCardsDeck(fileName);
     printStartGameMessage();

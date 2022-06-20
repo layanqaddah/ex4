@@ -34,10 +34,6 @@ using std::shared_ptr;
 class Mtmchkin
 {
 public:
-    ///############################### TO BE DELETED ###############################
-    void printCardsQueue();  ///to be deleted
-    ///#############################################################################
-
     /*
     * C'tor of Mtmchkin class
     *
@@ -45,7 +41,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    Mtmchkin(const string fileName);
+    Mtmchkin(const string& fileName);
 
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -125,7 +121,6 @@ private:
     static const int MIN_PLAYERS_TEAM_SIZE = 2;
 
 };
-
 
 void readCardsFile(std::vector<string>& cardNames, ifstream& cardsFile);
 bool playerWon(const Player& player);
