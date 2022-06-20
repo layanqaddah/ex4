@@ -161,15 +161,6 @@ void Mtmchkin::spinCardDeck()
     cardsDeck.pop_front();
 }
 
-
-void Mtmchkin::printCardsQueue()
-{
-    for(unique_ptr<Card>& uniqueCardPtr: cardsDeck)
-    {
-        std::cout<<*uniqueCardPtr;
-    }
-}
-
 ///################################## Cards Deck related ##################################
 
 void Mtmchkin::initializeLeaderBoard()
