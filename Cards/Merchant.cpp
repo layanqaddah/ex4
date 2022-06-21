@@ -22,17 +22,37 @@ bool Merchant::isValidBuyOption(int buyDecision) const
     return buyDecision == HP_BOOST_OPTION || buyDecision == FORCE_BOOST_OPTION || buyDecision == DEAL_BREAK_OPTION;
 }
 
+void Merchant::getPlayerDecision(int& Decision)
+{
+    std::string input;
+    while(std::getline(std::cin,input))
+    {
+        if(input.size()==1)
+        {
+            try
+            {
+                Decision = std::stoi(input);
+                if(isValidBuyOption(Decision))
+                {
+                    return;
+                }
+            }
+            catch(std::invalid_argument&)
+            {}
+        }
+        if(input.size()>0)
+        {
+            printInvalidInput();
+        }
+    }
+}
+
 void Merchant::applyCard(Player& player)
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getCoins());
     int buyDecision = -1;
+    getPlayerDecision(buyDecision);
     bool playerHasEnoughMoney=false;
-    std::cin>>buyDecision;
-    while(!isValidBuyOption(buyDecision))
-    {
-        printInvalidInput();
-        std::cin>>buyDecision;
-    }
     switch (buyDecision)
     {
         case HP_BOOST_OPTION:
@@ -45,6 +65,7 @@ void Merchant::applyCard(Player& player)
             else
             {
                 printMerchantInsufficientCoins(std::cout);
+                printMerchantSummary(std::cout, player.getPlayerName(), HP_BOOST_OPTION, 0);
             }
             break;
         case FORCE_BOOST_OPTION:
@@ -57,6 +78,7 @@ void Merchant::applyCard(Player& player)
             else
             {
                 printMerchantInsufficientCoins(std::cout);
+                printMerchantSummary(std::cout, player.getPlayerName(), FORCE_BOOST_OPTION, 0);
             }
             break;
         case DEAL_BREAK_OPTION:

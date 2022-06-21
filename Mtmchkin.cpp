@@ -28,8 +28,8 @@ const string Mtmchkin::VAMPIRE_CLASS = "Vampire";
 
 Mtmchkin::Mtmchkin(const string& fileName): roundsCount(0), killedPlayersCounter(0), victoriousPlayersCount(0)
 {
-    initializeCardsDeck(fileName);
     printStartGameMessage();
+    initializeCardsDeck(fileName);
     createPlayersQueue();
     initializeLeaderBoard();
 }
@@ -108,10 +108,10 @@ void Mtmchkin::initializeCardsDeck(const string filename)
 
 void readCardsFile(vector<string> &cardNames, ifstream& cardsFile)
 {
-    char buffer[200];
-    while(cardsFile.getline(buffer,sizeof(buffer)))
+    string line;
+    while(std::getline(cardsFile, line))
     {
-        cardNames.push_back(buffer);
+        cardNames.push_back(line);
     }
 }
 
