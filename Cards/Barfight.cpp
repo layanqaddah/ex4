@@ -1,5 +1,5 @@
 //
-// Created by user on 6/14/2022.
+// Created by Layan & Omar on 14/06/2022.
 //
 
 #include "Barfight.h"
@@ -8,8 +8,6 @@
 const std::string Barfight::BARFIGHT_NAME = "Barfight";
 
 Card* Barfight::clone()
-
-
 {
     return  new Barfight(*this);
 }

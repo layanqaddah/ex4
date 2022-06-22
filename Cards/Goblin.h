@@ -1,5 +1,5 @@
 //
-// Created by user on 6/14/2022.
+// Created by Layan & Omar on 14/06/2022.
 //
 
 #ifndef EX4_GOBLIN_H
@@ -10,7 +10,7 @@ class Goblin: public Battle
 {
 public:
 
-    Goblin(): Battle(6,2){};
+    Goblin(): Battle(GOBLIN_FORCE,GOBLIN_LOOT){};
     Goblin(const Goblin& otherGoblin)=default;
     Goblin& operator=(const Goblin& otherGoblin)=default;
     ~Goblin()=default;

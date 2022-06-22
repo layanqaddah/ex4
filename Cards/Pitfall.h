@@ -1,5 +1,5 @@
 //
-// Created by user on 6/15/2022.
+// Created by Layan on 15/06/2022. (my birthday!!!!)
 //
 
 #ifndef EX4_PITFALL_H
@@ -14,8 +14,8 @@ public:
     Pitfall()=default;
     Pitfall(const Pitfall& otherPitfall)=default;
     Pitfall& operator=(const Pitfall& otherPitfall)=default;
-
     ~Pitfall()=default;
+
     Card* clone() override;
     void applyCard(Player& player) override;
 

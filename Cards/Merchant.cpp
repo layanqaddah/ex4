@@ -3,7 +3,12 @@
 //
 
 #include "Merchant.h"
+#include<assert.h>
 const std::string Merchant::MERCHANT_NAME = "Merchant";
+const std::string Merchant::DEAL_BREAK_STR_OPTION = "0";
+const std::string Merchant::HP_BOOST_STR_OPTION = "1";
+const std::string Merchant::FORCE_BOOST_STR_OPTION ="2";
+
 
 
 Card* Merchant::clone()
@@ -17,9 +22,9 @@ void Merchant::print(std::ostream& os) const
     printEndOfCardDetails(os);
 }
 
-bool Merchant::isValidBuyOption(int buyDecision) const
+bool Merchant::isValidBuyOption(std::string& input) const
 {
-    return buyDecision == HP_BOOST_OPTION || buyDecision == FORCE_BOOST_OPTION || buyDecision == DEAL_BREAK_OPTION;
+    return input == HP_BOOST_STR_OPTION || input == FORCE_BOOST_STR_OPTION || input == DEAL_BREAK_STR_OPTION;
 }
 
 void Merchant::getPlayerDecision(int& Decision)
@@ -27,31 +32,22 @@ void Merchant::getPlayerDecision(int& Decision)
     std::string input;
     while(std::getline(std::cin,input))
     {
-        if(input.size()==1)
+        if(isValidBuyOption(input))
         {
-            try
-            {
-                Decision = std::stoi(input);
-                if(isValidBuyOption(Decision))
-                {
-                    return;
-                }
-            }
-            catch(std::invalid_argument&)
-            {}
+            Decision = std::stoi(input);
+            return;
         }
-        if(input.size()>0)
-        {
-            printInvalidInput();
-        }
+        printInvalidInput();
     }
 }
+
 
 void Merchant::applyCard(Player& player)
 {
     printMerchantInitialMessageForInteractiveEncounter(std::cout, player.getPlayerName(), player.getCoins());
     int buyDecision = -1;
     getPlayerDecision(buyDecision);
+    assert(buyDecision==0 || buyDecision==1 || buyDecision==2);
     bool playerHasEnoughMoney=false;
     switch (buyDecision)
     {

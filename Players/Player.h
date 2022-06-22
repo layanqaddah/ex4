@@ -29,7 +29,6 @@ public:
     virtual void setHp(int hpQuantity);
     void setForce(int forceQuantity);
     bool isKnockedOut() const;
-    //------------------------------------------------------------------------------------------------------
     int getCoins();
     std::string getPlayerName();
     void killThePlayer();
@@ -43,8 +42,8 @@ protected:
     int m_force;
     int m_healthPoints;
     int m_coins;
-    static const int MAX_HP=100;
     std::string m_name;
+    static const int MAX_HP=100;
     virtual void print(std::ostream& os) const = 0;
 
 private:

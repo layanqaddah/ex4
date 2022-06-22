@@ -1,5 +1,5 @@
 //
-// Created by user on 6/14/2022.
+// Created by Layan & Omar on 6/14/2022.
 //
 
 #ifndef EX4_TREASURE_H
@@ -14,8 +14,8 @@ public:
     Treasure()=default;
     Treasure(const Treasure& otherTreasureTreasure)=default;
     Treasure& operator=(const Treasure& otherTreasurer)=default;
-
     ~Treasure()=default;
+
     Card* clone() override;
     void applyCard(Player& player) override;
 

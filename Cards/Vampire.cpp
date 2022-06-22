@@ -3,6 +3,7 @@
 //
 
 #include "Vampire.h"
+
 const std::string Vampire::VAMPIRE_NAME = "Vampire";
 
 Card* Vampire::clone()

@@ -5,8 +5,14 @@
 #include "Mtmchkin.h"
 #include "Exception.h"
 
+using std::stringstream;
 using std::vector;
 using std::move;
+using std::string;
+using std::shared_ptr;
+using std::unique_ptr;
+using std::list;
+using std::ifstream;
 
 const string DeckFileException::BASE_MESSAGE = "Deck File Error: ";
 const string DeckFileNotFound::FILE_NOT_FOUND_ERROR = "File not found";
@@ -266,17 +272,32 @@ void Mtmchkin::getPlayers(int teamSize)
         insertNewPlayer();
     }
 }
+
+void split(const string& s, string& playerName ,string& playerType)
+{
+    vector<string> elems;
+    stringstream ss(s);
+    string item;
+    while (getline(ss, item, ' ')) {
+        elems.push_back(item);
+    }
+    playerName=elems[0];
+    playerType=elems[1];
+}
+
 void Mtmchkin::insertNewPlayer()
 {
+    std::string input;
+    std::getline(std::cin,input);
     std::string playerName;
-    std::cin>>playerName;
     std::string playerType;
-    std::cin>>playerType;
+    split(input,playerName,playerType);
+
     while(playerName.size()>MAX_PLAYER_NAME_SIZE || !containsOnlyEnglishLetters(playerName) || !isValidClass(playerType))
     {
         invalidDetail(playerName,playerType);
-        std::cin>>playerName;
-        std::cin>>playerType;
+        std::getline(std::cin,input);
+        split(input,playerName,playerType);
     }
     if(playerType==ROGUE_CLASS)
     {

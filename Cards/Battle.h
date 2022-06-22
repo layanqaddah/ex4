@@ -22,8 +22,7 @@ protected:
     const int m_force;
     const int m_loot;
 
-    virtual void print(std::ostream& os) const = 0;
-
+    virtual void print(std::ostream& os)const = 0;
     virtual void onWinBattle(Player& player)=0;
     virtual void onLossBattle(Player& player)=0;
 

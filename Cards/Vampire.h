@@ -4,6 +4,7 @@
 
 #ifndef EX4_VAMPIRE_H
 #define EX4_VAMPIRE_H
+
 #include "Battle.h"
 
 class Vampire : public Battle

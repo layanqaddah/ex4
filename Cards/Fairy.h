@@ -1,5 +1,5 @@
 //
-// Created by user on 6/14/2022.
+// Created by Layan & Omar on 14/06/2022.
 //
 
 #ifndef EX4_FAIRY_H
@@ -14,9 +14,8 @@ public:
     Fairy()=default;
     Fairy(const Fairy& otherFairy)=default;
     Fairy& operator=(const Fairy& otherFairy)=default;
-    //friend std::ostream& operator<<(std::ostream& os,const Fairy& fairy);
-
     ~Fairy()=default;
+
     Card* clone() override;
     void applyCard(Player& player) override;
 
